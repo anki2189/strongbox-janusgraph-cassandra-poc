@@ -2,6 +2,7 @@ package org.carlspring.strongbox.janusgraph.domain;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
@@ -20,9 +21,10 @@ public class ArtifactGroupEntity extends DomainEntity implements ArtifactGroup
     }
 
     @Override
-    public void setArtifacts(Set<? extends Artifact> artifactEntries)
+    public void setArtifacts(Set<? extends Artifact> artifact)
     {
-        this.artifacts = (Set<ArtifactEntity>) artifactEntries;
+        this.artifacts = new HashSet<ArtifactEntity>(
+                artifacts.stream().map(ArtifactEntity.class::cast).collect(Collectors.toSet()));
     }
 
 }
