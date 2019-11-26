@@ -5,6 +5,11 @@ import java.util.Set;
 public interface ArtifactGroup extends DomainObject
 {
     public static final String LABEL = "ArtifactGroup";
+
+    String getGroupId();
+
+    void setGroupId(String groupId);
+
     
     Set<? extends Artifact> getArtifacts();
 
