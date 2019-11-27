@@ -125,7 +125,11 @@ public class StrongboxSchema
         vertexLabel = jgm.getVertexLabel(ArtifactGroup.LABEL);
         buildIndexIfNecessary(jgm, ArtifactGroup.LABEL + ".uuid", Vertex.class, propertyKey,
                               vertexLabel, true).ifPresent(result::add);
-
+        propertyKey = jgm.getPropertyKey("groupId");
+        vertexLabel = jgm.getVertexLabel(ArtifactGroup.LABEL);
+        buildIndexIfNecessary(jgm, ArtifactGroup.LABEL + ".groupId", Vertex.class, propertyKey,
+                              vertexLabel).ifPresent(result::add);
+        
         propertyKey = jgm.getPropertyKey("uuid");
         vertexLabel = jgm.getVertexLabel(RepositoryArtifactIdGroup.LABEL);
         buildIndexIfNecessary(jgm, RepositoryArtifactIdGroup.LABEL + ".uuid", Vertex.class, propertyKey,
@@ -151,6 +155,8 @@ public class StrongboxSchema
 
         makePropertyKeyIfDoesNotExist(jgm, "path", String.class);
         makePropertyKeyIfDoesNotExist(jgm, "version", String.class);
+        
+        makePropertyKeyIfDoesNotExist(jgm, "groupId", String.class);
 
         // Vertices
         makeVertexLabelIfDoesNotExist(jgm, Artifact.LABEL);

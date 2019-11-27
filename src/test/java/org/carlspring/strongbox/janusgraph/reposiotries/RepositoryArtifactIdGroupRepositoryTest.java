@@ -35,6 +35,7 @@ public class RepositoryArtifactIdGroupRepositoryTest
     {
         GraphTraversalSource g = janusGraph.traversal();
 
+        String artifactGroupUuid = UUID.randomUUID().toString();
         g.addV(ArtifactCoordinates.LABEL)
          .property("uuid", UUID.randomUUID().toString())
          .property("path",
@@ -50,11 +51,13 @@ public class RepositoryArtifactIdGroupRepositoryTest
          .addE(Edges.ARTIFACT_ARTIFACTCOORDINATES)
          .to("adc1")
          .addV(ArtifactGroup.LABEL)
+         .property("uuid", artifactGroupUuid)
          .property("groupId", "findArtifactsByGroupIdShouldWorkGroup")
          .as("ag1")
          .addE(Edges.ARTIFACTGROUP_ARTIFACT)
          .to("ae1")
          .addV(RepositoryArtifactIdGroup.LABEL)
+         .property("uuid", artifactGroupUuid)
          .property("storageId", "storage0")
          .property("repositoryId", "releases")
          .addE(Edges.REPOSITORYARTIFACTIDGROUP_ARTIFACTGROUP)

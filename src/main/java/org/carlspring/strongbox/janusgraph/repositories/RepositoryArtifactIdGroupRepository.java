@@ -12,8 +12,10 @@ import org.springframework.stereotype.Repository;
 public interface RepositoryArtifactIdGroupRepository extends CrudRepository<RepositoryArtifactIdGroup, String>
 {
 
-    @Query("MATCH (ac:ArtifactCoordinates)<-[aeac]-(a:Artifact)<-[]-(ag:ArtifactGroup{groupId:$path})<-[]-(raig:RepositoryArtifactIdGroup{storageId:$storageId,repositoryId:$repositoryId})" +
+    @Query("MATCH (ag:ArtifactGroup{groupId:$path})<-[]-(raig:RepositoryArtifactIdGroup{storageId:$storageId,repositoryId:$repositoryId}) " +
+           "WITH ag " +
+           "MATCH (ag)-[]->(a:Artifact)-[aeac]->(ac:ArtifactCoordinates) " +
            "RETURN a,aeac,ac")
-    List<ArtifactEntity> findArtifactsByGroupId(String storageId, String repositoryId, String path);
+     List<ArtifactEntity> findArtifactsByGroupId(String storageId, String repositoryId, String path);
     
 }
