@@ -63,7 +63,8 @@ public class RepositoryArtifactIdGroupRepositoryTest
 
         g.tx().commit();
         
-        List<ArtifactEntity> result = repositoryArtifactIdGroupRepository.findArtifactsByGroupId("findArtifactsByGroupIdShouldWorkGroup");
+        List<ArtifactEntity> result = repositoryArtifactIdGroupRepository.findArtifactsByGroupId("storage0", "releases",
+                                                                                                 "findArtifactsByGroupIdShouldWorkGroup");
         assertEquals(1, result.size());
     }
 
