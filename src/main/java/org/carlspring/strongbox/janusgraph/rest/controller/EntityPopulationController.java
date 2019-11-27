@@ -5,7 +5,7 @@ import org.carlspring.strongbox.janusgraph.domain.ArtifactEntry;
 import org.carlspring.strongbox.janusgraph.reposiotries.ArtifactCoordinatesRepository;
 import org.carlspring.strongbox.janusgraph.reposiotries.ArtifactEntryRepository;
 import org.carlspring.strongbox.janusgraph.rest.request.EntityPopulationRequest;
-import org.carlspring.strongbox.janusgraph.util.EntityGenerator;
+import org.carlspring.strongbox.janusgraph.util.EntityGeneratorUtil;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class EntityPopulationController
 
         for (int i = 0; i < artifactsToCreate; ++i)
         {
-            artifactEntries.add(EntityGenerator.createRandomArtifact());
+            artifactEntries.add(EntityGeneratorUtil.createRandomArtifact());
         }
 
         for (int j = 0; j < dependenciesToCreate; ++j)
@@ -64,7 +64,7 @@ public class EntityPopulationController
             {
                 toArtifact = RandomUtils.nextInt(0, artifactsToCreate);
             } while (fromArtifact != toArtifact);
-            ArtifactDependency dependency = EntityGenerator.createArtifactDependency(
+            ArtifactDependency dependency = EntityGeneratorUtil.createArtifactDependency(
                     artifactEntries.get(fromArtifact), artifactEntries.get(toArtifact));
             artifactDependencies.add(dependency);
         }

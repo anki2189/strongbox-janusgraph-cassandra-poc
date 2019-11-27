@@ -12,7 +12,7 @@ import java.util.UUID;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 
-public class EntityGenerator
+public class EntityGeneratorUtil
 {
 
     public static ArtifactEntry createRandomArtifact()
