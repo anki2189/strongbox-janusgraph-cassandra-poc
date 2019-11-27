@@ -8,6 +8,7 @@ import org.carlspring.strongbox.janusgraph.reposiotries.RepositoriesConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 
 @SpringBootApplication
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Import;
           JanusGraphConfig.class,
           GremlinServerConfig.class,
           RepositoriesConfig.class })
+@ComponentScan(basePackages = {"org.carlspring.strongbox.janusgraph"})
 public class Application
 {
 
