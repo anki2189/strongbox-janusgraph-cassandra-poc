@@ -1,9 +1,14 @@
 package org.carlspring.strongbox.janusgraph.graph.schema;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.List;
 import java.util.NavigableSet;
 
 import org.assertj.core.util.Sets;
 import org.carlspring.strongbox.janusgraph.app.Application;
+import org.carlspring.strongbox.janusgraph.domain.DatabaseSchema;
 import org.carlspring.strongbox.janusgraph.graph.schema.changesets.ChangeSet;
 import org.carlspring.strongbox.janusgraph.reposiotries.DatabaseSchemaRepository;
 import org.janusgraph.core.JanusGraph;
@@ -58,7 +63,7 @@ class StrongboxSchemaTest
             @Override
             public int getOrder()
             {
-                return 0;
+                return 1;
             }
 
             @Override
@@ -79,7 +84,14 @@ class StrongboxSchemaTest
     void testGet()
     {
         // TODO
-        strongboxSchema.afterPropertiesSet();
+        //strongboxSchema.afterPropertiesSet();
+        List<DatabaseSchema> databaseSchemas =
+            (List<DatabaseSchema>) databaseSchemaRepository.findAll();
+        assertNotNull(databaseSchemas);
+        assertEquals(databaseSchemas.size(), 1);
+        assertNotNull(databaseSchemas.get(0).getChangeSets());
+        assertEquals(databaseSchemas.get(0).getChangeSets().size(), 1);
+        System.out.println(databaseSchemas.size());
     }
 
 
